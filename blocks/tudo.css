@@ -1,59 +1,103 @@
 .page {
-    background-color: #ffe5ec;
-    box-sizing: border-box;
-    min-width: 320px;
-    min-height: 1200px;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  background-color: #ffe5ec;
+  box-sizing: border-box;
+  min-width: 320px;
+  min-height: 1200px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
-    background-color: #ffb3c6;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #ffb3c6;
+}
 
 .title {
-    padding: 0;
-    padding-top: 40px;
-    padding-bottom: 30px;
-    margin: 0;
-    text-align: center;
-    font-family: "Nerko", Cambria, Cochin, Georgia, Times, 'Times New Roman';
-    text-align: center;
-    vertical-align: middle;
-    font-weight: 400;
-    font-size: 85px;
-    color: #fb6f92;
-    padding-left: 15px;
-    padding-right: 15px;
+  padding: 0;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin: 0;
+  text-align: center;
+  font-family: "Nerko", Cambria, Cochin, Georgia, Times, "Times New Roman";
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 85px;
+  color: #fb6f92;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .elements {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .gift {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
-    margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
 .gift-aviso {
+  color: #ffb3c6;
+  font-family: "Comic", Arial, sans-serif;
+  /* font-weight: 700; */
+  font-size: 25px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.gift-title {
+  color: #fb6f92;
+  font-family: "Comic", Arial, sans-serif;
+  /* font-weight: 500; */
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.gift-details {
+  color: #fb6f92;
+  font-family: "Comic", Arial, sans-serif;
+  /* font-weight: 500; */
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.gift-details:last-of-type {
+  margin-bottom: 20px;
+}
+
+.gift-image {
+  width: 400px;
+  height: 400px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+@media (min-width: 320px) {
+  .gift-aviso {
     color: #ffb3c6;
     font-family: "Comic", Arial, sans-serif;
     /* font-weight: 700; */
@@ -63,9 +107,11 @@
     padding: 0;
     margin-bottom: 30px;
     padding-top: 20px;
-}
+    min-width: 310px;
+    max-width: 80%;
+  }
 
-.gift-title {
+  .gift-title {
     color: #fb6f92;
     font-family: "Comic", Arial, sans-serif;
     /* font-weight: 500; */
@@ -73,87 +119,44 @@
     margin: 0;
     padding: 0;
     margin-bottom: 20px;
-    max-width: 400px;
+    max-width: 310px;
+  }
+
+  .gift-image {
+    width: 320px;
+    height: 320px;
+    border-radius: 25px;
+  }
 }
 
-.gift-details {
+@media (min-width: 880px) {
+  .gift-aviso {
+    color: #ffb3c6;
+    font-family: "Comic", Arial, sans-serif;
+    /* font-weight: 700; */
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    max-width: 50%;
+  }
+
+  .gift-title {
     color: #fb6f92;
     font-family: "Comic", Arial, sans-serif;
     /* font-weight: 500; */
+    text-align: center;
     margin: 0;
     padding: 0;
     margin-bottom: 20px;
-}
+    max-width: 390px;
+  }
 
-.gift-image {
+  .gift-image {
     width: 400px;
     height: 400px;
     border-radius: 25px;
-}
-
-@media (min-width: 320px){
-
-    .gift-aviso {
-        color: #ffb3c6;
-        font-family: "Comic", Arial, sans-serif;
-        /* font-weight: 700; */
-        font-size: 25px;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        min-width: 310px;
-        max-width: 80%;
-    }
-
-    .gift-title {
-        color: #fb6f92;
-        font-family: "Comic", Arial, sans-serif;
-        /* font-weight: 500; */
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 20px;
-        max-width: 310px;
-    }
-
-    .gift-image {
-        width: 320px;
-        height: 320px;
-        border-radius: 25px;
-    }
-}
-
-@media (min-width: 880px){
-
-    .gift-aviso {
-        color: #ffb3c6;
-        font-family: "Comic", Arial, sans-serif;
-        /* font-weight: 700; */
-        font-size: 25px;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 30px;
-        padding-top: 20px;
-        max-width: 50%;
-    }
-
-    .gift-title {
-        color: #fb6f92;
-        font-family: "Comic", Arial, sans-serif;
-        /* font-weight: 500; */
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 20px;
-        max-width: 390px;
-    }
-
-    .gift-image {
-        width: 400px;
-        height: 400px;
-        border-radius: 25px;
-    }
+  }
 }
