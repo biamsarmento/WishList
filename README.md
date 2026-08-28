@@ -1,6 +1,6 @@
 # BDay
 
-Sugestões de presentes para o meu aniversário :) Site estático (HTML/CSS/JS puro, sem build step) com a lista de presentes guardada no Supabase, para que quem visitar consiga marcar o que já comprou e ver o valor em real dos itens em dólar (com opção de pagar por PIX via Wise).
+Sugestões de presentes :) Site estático (HTML/CSS/JS puro, sem build step) com a lista de presentes guardada no Supabase, para que quem visitar consiga marcar o que já comprou e ver o valor em real dos itens em dólar (com opção de pagar por PIX via Wise).
 
 ## Rodar localmente
 Não tem build step. Só servir os arquivos estáticos, por exemplo:
