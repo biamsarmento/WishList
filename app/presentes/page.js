@@ -5,11 +5,13 @@ import { supabase } from "@/lib/supabaseClient";
 import { getExchangeRate } from "@/lib/exchangeRate";
 import GiftCard from "@/components/GiftCard";
 import PixBanner from "@/components/PixBanner";
+import ThanksModal from "@/components/ThanksModal";
 
 export default function PresentesPage() {
   const [gifts, setGifts] = useState([]);
   const [rate, setRate] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showThanks, setShowThanks] = useState(false);
 
   const loadGifts = useCallback(async () => {
     const [exchangeRate, { data, error }] = await Promise.all([
@@ -63,6 +65,11 @@ export default function PresentesPage() {
         current.map((gift) => (gift.id === id ? { ...gift, is_purchased: wasPurchased } : gift))
       );
       alert("Ops, não deu pra marcar agora. Tenta de novo em instantes!");
+      return;
+    }
+
+    if (!wasPurchased) {
+      setShowThanks(true);
     }
   };
 
@@ -86,6 +93,8 @@ export default function PresentesPage() {
           ))}
         </div>
       )}
+
+      <ThanksModal open={showThanks} onClose={() => setShowThanks(false)} />
     </div>
   );
 }
