@@ -18,11 +18,7 @@ export default function PixBanner() {
 
   return (
     <div className="w-full max-w-2xl rounded-3xl border-2 border-rose bg-white/80 p-6 text-center shadow-sm">
-      <h2 className="font-nerko text-2xl text-rose">Prefere só mandar um PIX?</h2>
-      <p className="mt-2 font-comic leading-relaxed text-rose">
-        Sem problema. Pode mandar qualquer valor direto pra minha conta na Wise, no valor do
-        presente ou no que achar melhor.
-      </p>
+      <h2 className="font-nerko text-2xl text-rose">Chave PIX?</h2>
 
       <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <span className="rounded-full bg-cream px-5 py-2 font-comic text-lg font-bold text-rose">
