@@ -51,42 +51,44 @@ export default function GiftCard({ gift, rate, onClaim, onRelease }) {
         </div>
       )}
 
-      {isMultiUnit ? (
-        <>
-          {isFullyClaimed ? (
-            <p className="rounded-full bg-gray-400 px-5 py-2 font-comic text-white">
-              Todas as cotas já foram compradas
-            </p>
-          ) : (
-            <button
-              type="button"
-              onClick={() => onClaim(gift.id)}
-              className="cursor-pointer rounded-full bg-rose px-5 py-2 font-comic text-white transition hover:bg-rose-light"
-            >
-              Contribuir com uma cota
-            </button>
-          )}
-          {purchasedUnits > 0 && (
-            <button
-              type="button"
-              onClick={() => onRelease(gift.id)}
-              className="cursor-pointer font-comic text-sm text-rose underline"
-            >
-              Contribuí por engano, desmarcar uma cota
-            </button>
-          )}
-        </>
-      ) : (
-        <button
-          type="button"
-          onClick={() => (isFullyClaimed ? onRelease(gift.id) : onClaim(gift.id))}
-          className={`cursor-pointer rounded-full px-5 py-2 font-comic text-white transition ${
-            isFullyClaimed ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
-          }`}
-        >
-          {isFullyClaimed ? "Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
-        </button>
-      )}
+      <div className="mt-auto flex w-full flex-col items-center gap-2 pt-2">
+        {isMultiUnit ? (
+          <>
+            {isFullyClaimed ? (
+              <p className="rounded-full bg-gray-400 px-5 py-2 font-comic text-white">
+                Todas as cotas já foram compradas
+              </p>
+            ) : (
+              <button
+                type="button"
+                onClick={() => onClaim(gift.id)}
+                className="cursor-pointer rounded-full bg-rose px-5 py-2 font-comic text-white transition hover:bg-rose-light"
+              >
+                Contribuir com uma cota
+              </button>
+            )}
+            {purchasedUnits > 0 && (
+              <button
+                type="button"
+                onClick={() => onRelease(gift.id)}
+                className="cursor-pointer font-comic text-sm text-rose underline"
+              >
+                Contribuí por engano, desmarcar uma cota
+              </button>
+            )}
+          </>
+        ) : (
+          <button
+            type="button"
+            onClick={() => (isFullyClaimed ? onRelease(gift.id) : onClaim(gift.id))}
+            className={`cursor-pointer rounded-full px-5 py-2 font-comic text-white transition ${
+              isFullyClaimed ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
+            }`}
+          >
+            {isFullyClaimed ? "Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
