@@ -14,7 +14,15 @@ function slugify(text) {
     .replace(/(^-|-$)/g, "");
 }
 
-const emptyForm = { title: "", details: "", link: "", price: "", currency: "BRL", sort_order: 0 };
+const emptyForm = {
+  title: "",
+  details: "",
+  link: "",
+  price: "",
+  currency: "BRL",
+  sort_order: 0,
+  total_units: 1,
+};
 
 export default function AdminGiftForm({ onAdded }) {
   const [form, setForm] = useState(emptyForm);
@@ -55,6 +63,7 @@ export default function AdminGiftForm({ onAdded }) {
         price: form.price === "" ? null : Number(form.price),
         currency: form.currency,
         sort_order: Number(form.sort_order) || 0,
+        total_units: Math.max(Number(form.total_units) || 1, 1),
       });
       if (insertError) throw insertError;
 
@@ -117,14 +126,28 @@ export default function AdminGiftForm({ onAdded }) {
         </select>
       </div>
 
-      <input
-        name="sort_order"
-        type="number"
-        value={form.sort_order}
-        onChange={handleChange}
-        placeholder="Ordem"
-        className={inputClass}
-      />
+      <div className="flex gap-2">
+        <input
+          name="sort_order"
+          type="number"
+          value={form.sort_order}
+          onChange={handleChange}
+          placeholder="Ordem"
+          className={`w-full ${inputClass}`}
+        />
+        <input
+          name="total_units"
+          type="number"
+          min="1"
+          value={form.total_units}
+          onChange={handleChange}
+          placeholder="Quantidade de cotas"
+          className={`w-full ${inputClass}`}
+        />
+      </div>
+      <p className="-mt-2 font-comic text-xs text-rose">
+        Deixe quantidade de cotas em 1 pra presentes normais (comprados por inteiro).
+      </p>
 
       <input
         type="file"

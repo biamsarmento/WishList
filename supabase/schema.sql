@@ -100,3 +100,61 @@ create policy "Authenticated manage gift images"
     to authenticated
     using (bucket_id = 'gift-images')
     with check (bucket_id = 'gift-images');
+
+-- ============================================================
+-- NOVO (fase 3): presentes divididos em cotas (ex: parcelas de um
+-- item caro, cada pessoa "compra" uma cota). Presentes normais
+-- continuam com total_units = 1, funcionando exatamente como antes.
+-- ============================================================
+
+alter table gifts add column if not exists total_units int not null default 1;
+alter table gifts add column if not exists purchased_units int not null default 0;
+
+-- Migra o estado antigo (is_purchased) para o novo modelo de cotas.
+update gifts set purchased_units = 1 where is_purchased = true and purchased_units = 0;
+
+alter table gifts drop column if exists is_purchased;
+
+-- Reivindica uma cota (increment atômico, nunca passa de total_units).
+create or replace function claim_gift_unit(p_gift_id text)
+returns gifts
+language plpgsql
+security definer
+set search_path = public
+as $$
+    declare
+        updated_gift gifts;
+    begin
+        update gifts
+        set purchased_units = purchased_units + 1
+        where id = p_gift_id and purchased_units < total_units
+        returning * into updated_gift;
+
+        return updated_gift;
+    end;
+$$;
+
+-- Libera uma cota (para desfazer engano de marcação).
+create or replace function release_gift_unit(p_gift_id text)
+returns gifts
+language plpgsql
+security definer
+set search_path = public
+as $$
+    declare
+        updated_gift gifts;
+    begin
+        update gifts
+        set purchased_units = greatest(purchased_units - 1, 0)
+        where id = p_gift_id
+        returning * into updated_gift;
+
+        return updated_gift;
+    end;
+$$;
+
+grant execute on function claim_gift_unit(text) to anon;
+grant execute on function release_gift_unit(text) to anon;
+
+revoke execute on function toggle_gift_purchased(text) from anon;
+drop function if exists toggle_gift_purchased(text);

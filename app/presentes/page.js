@@ -52,25 +52,56 @@ export default function PresentesPage() {
     };
   }, [loadGifts]);
 
-  const toggleGift = async (id, wasPurchased) => {
+  const claimUnit = async (id) => {
     setGifts((current) =>
-      current.map((gift) => (gift.id === id ? { ...gift, is_purchased: !wasPurchased } : gift))
+      current.map((gift) =>
+        gift.id === id ? { ...gift, purchased_units: (gift.purchased_units ?? 0) + 1 } : gift
+      )
     );
 
-    const { error } = await supabase.rpc("toggle_gift_purchased", { p_gift_id: id });
+    const { data, error } = await supabase.rpc("claim_gift_unit", { p_gift_id: id });
 
-    if (error) {
-      console.error("Não foi possível atualizar o presente:", error);
-      setGifts((current) =>
-        current.map((gift) => (gift.id === id ? { ...gift, is_purchased: wasPurchased } : gift))
-      );
-      alert("Ops, não deu pra marcar agora. Tenta de novo em instantes!");
+    if (error || !data) {
+      console.error("Não foi possível marcar o presente:", error);
+      if (error) {
+        setGifts((current) =>
+          current.map((gift) =>
+            gift.id === id
+              ? { ...gift, purchased_units: Math.max((gift.purchased_units ?? 1) - 1, 0) }
+              : gift
+          )
+        );
+        alert("Ops, não deu pra marcar agora. Tenta de novo em instantes!");
+      } else {
+        alert("Ih, alguém ficou com a última cota agorinha! A lista já foi atualizada.");
+        loadGifts();
+      }
       return;
     }
 
-    if (!wasPurchased) {
-      setShowThanks(true);
+    setGifts((current) => current.map((gift) => (gift.id === id ? data : gift)));
+    setShowThanks(true);
+  };
+
+  const releaseUnit = async (id) => {
+    setGifts((current) =>
+      current.map((gift) =>
+        gift.id === id
+          ? { ...gift, purchased_units: Math.max((gift.purchased_units ?? 1) - 1, 0) }
+          : gift
+      )
+    );
+
+    const { data, error } = await supabase.rpc("release_gift_unit", { p_gift_id: id });
+
+    if (error || !data) {
+      console.error("Não foi possível desmarcar o presente:", error);
+      alert("Ops, não deu pra desmarcar agora. Tenta de novo em instantes!");
+      loadGifts();
+      return;
     }
+
+    setGifts((current) => current.map((gift) => (gift.id === id ? data : gift)));
   };
 
   return (
@@ -89,7 +120,7 @@ export default function PresentesPage() {
       ) : (
         <div className="flex flex-wrap justify-center gap-8">
           {gifts.map((gift) => (
-            <GiftCard key={gift.id} gift={gift} rate={rate} onToggle={toggleGift} />
+            <GiftCard key={gift.id} gift={gift} rate={rate} onClaim={claimUnit} onRelease={releaseUnit} />
           ))}
         </div>
       )}

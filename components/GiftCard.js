@@ -5,7 +5,12 @@ import { resolveImageSrc } from "@/lib/giftImage";
 const brlFormatter = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 const usdFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
-export default function GiftCard({ gift, rate, onToggle }) {
+export default function GiftCard({ gift, rate, onClaim, onRelease }) {
+  const totalUnits = gift.total_units ?? 1;
+  const purchasedUnits = gift.purchased_units ?? 0;
+  const isMultiUnit = totalUnits > 1;
+  const isFullyClaimed = purchasedUnits >= totalUnits;
+
   const brlAmount = gift.price != null && rate ? brlFormatter.format(gift.price * rate) : null;
 
   return (
@@ -28,18 +33,60 @@ export default function GiftCard({ gift, rate, onToggle }) {
           {gift.currency === "USD" && brlAmount && (
             <span className="font-normal"> (≈ {brlAmount} hoje)</span>
           )}
+          {isMultiUnit && <span className="font-normal"> por cota</span>}
         </p>
       )}
 
-      <button
-        type="button"
-        onClick={() => onToggle(gift.id, gift.is_purchased)}
-        className={`cursor-pointer rounded-full px-5 py-2 font-comic text-white transition ${
-          gift.is_purchased ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
-        }`}
-      >
-        {gift.is_purchased ? "Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
-      </button>
+      {isMultiUnit && (
+        <div className="w-full">
+          <p className="font-comic text-sm">
+            {purchasedUnits} de {totalUnits} já compraram
+          </p>
+          <div className="mt-1 h-3 w-full overflow-hidden rounded-full bg-white/70">
+            <div
+              className="h-full rounded-full bg-rose transition-all duration-300"
+              style={{ width: `${Math.min((purchasedUnits / totalUnits) * 100, 100)}%` }}
+            />
+          </div>
+        </div>
+      )}
+
+      {isMultiUnit ? (
+        <>
+          {isFullyClaimed ? (
+            <p className="rounded-full bg-gray-400 px-5 py-2 font-comic text-white">
+              Todas as cotas já foram compradas
+            </p>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onClaim(gift.id)}
+              className="cursor-pointer rounded-full bg-rose px-5 py-2 font-comic text-white transition hover:bg-rose-light"
+            >
+              Contribuir com uma cota
+            </button>
+          )}
+          {purchasedUnits > 0 && (
+            <button
+              type="button"
+              onClick={() => onRelease(gift.id)}
+              className="cursor-pointer font-comic text-sm text-rose underline"
+            >
+              Contribuí por engano, desmarcar uma cota
+            </button>
+          )}
+        </>
+      ) : (
+        <button
+          type="button"
+          onClick={() => (isFullyClaimed ? onRelease(gift.id) : onClaim(gift.id))}
+          className={`cursor-pointer rounded-full px-5 py-2 font-comic text-white transition ${
+            isFullyClaimed ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
+          }`}
+        >
+          {isFullyClaimed ? "Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
+        </button>
+      )}
     </div>
   );
 }

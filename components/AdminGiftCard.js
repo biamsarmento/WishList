@@ -13,6 +13,8 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
     price: gift.price ?? "",
     currency: gift.currency,
     sort_order: gift.sort_order,
+    total_units: gift.total_units ?? 1,
+    purchased_units: gift.purchased_units ?? 0,
   });
   const [status, setStatus] = useState(null);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
@@ -36,6 +38,8 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
         price: form.price === "" ? null : Number(form.price),
         currency: form.currency,
         sort_order: Number(form.sort_order) || 0,
+        total_units: Math.max(Number(form.total_units) || 1, 1),
+        purchased_units: Math.max(Number(form.purchased_units) || 0, 0),
       })
       .eq("id", gift.id);
 
@@ -120,6 +124,34 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
           className={`mt-1 w-full ${inputClass}`}
         />
       </label>
+
+      <div className="flex gap-2">
+        <label className="w-full font-comic text-sm text-rose">
+          Quantidade de cotas
+          <input
+            name="total_units"
+            type="number"
+            min="1"
+            value={form.total_units}
+            onChange={handleChange}
+            className={`mt-1 w-full ${inputClass}`}
+          />
+        </label>
+        <label className="w-full font-comic text-sm text-rose">
+          Cotas já compradas
+          <input
+            name="purchased_units"
+            type="number"
+            min="0"
+            value={form.purchased_units}
+            onChange={handleChange}
+            className={`mt-1 w-full ${inputClass}`}
+          />
+        </label>
+      </div>
+      <p className="-mt-2 font-comic text-xs text-rose">
+        Deixe quantidade de cotas em 1 pra presentes normais (comprados por inteiro).
+      </p>
 
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
         <button
