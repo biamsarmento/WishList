@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #ffe5ec;
+  --color-blush: #ffb3c6;
+  --color-rose: #fb6f92;
+  --color-rose-light: #ff8fab;
+  --font-nerko: var(--font-nerko-one);
+  --font-comic: var(--font-comic-neue);
+}
+
+body {
+  font-family: var(--font-comic), Arial, sans-serif;
+}

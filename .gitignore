@@ -1,3 +1,14 @@
 .DS_Store
 node_modules
 dist
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# env files
+.env*.local
+
+# vercel
+.vercel
