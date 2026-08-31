@@ -66,7 +66,7 @@ export default function PresentesPage() {
   };
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-12">
+    <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 pb-12 pt-40 sm:pt-28">
       <p className="max-w-xl text-center font-comic text-lg leading-relaxed">
         Oi gente! Criei esse site para dar sugestões de presentes para as pessoas que estiverem na
         dúvida sobre o que me dar... :) É só clicar na imagem para entrar no site! Se você já

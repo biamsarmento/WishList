@@ -3,8 +3,8 @@
 @theme inline {
   --color-cream: #ffe5ec;
   --color-blush: #ffb3c6;
-  --color-rose: #fb6f92;
-  --color-rose-light: #ff8fab;
+  --color-rose: #d6336c;
+  --color-rose-light: #fb6f92;
   --font-nerko: var(--font-nerko-one);
   --font-comic: var(--font-comic-neue);
 }

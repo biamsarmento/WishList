@@ -43,7 +43,7 @@ export default function GiftCard({ gift, rate, onToggle }) {
           gift.is_purchased ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
         }`}
       >
-        {gift.is_purchased ? "🎉 Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
+        {gift.is_purchased ? "Já foi presenteado (clique para desmarcar)" : "Já comprei!"}
       </button>
 
       {gift.currency === "USD" && gift.price != null && (
@@ -53,7 +53,7 @@ export default function GiftCard({ gift, rate, onToggle }) {
             onClick={() => setShowPix((current) => !current)}
             className="font-comic text-sm text-rose underline"
           >
-            Prefiro pagar por PIX 💸
+            Prefiro pagar por PIX
           </button>
 
           {showPix && (

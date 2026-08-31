@@ -49,12 +49,12 @@ export default function AdminPage() {
   };
 
   if (session === undefined) {
-    return <p className="p-12 text-center font-comic">Carregando...</p>;
+    return <p className="pt-40 p-12 text-center font-comic">Carregando...</p>;
   }
 
   if (!session) {
     return (
-      <div className="mx-auto flex max-w-sm flex-col gap-4 px-4 py-16">
+      <div className="mx-auto flex max-w-sm flex-col gap-4 px-4 pb-16 pt-40 sm:pt-28">
         <h1 className="text-center font-nerko text-3xl text-rose">Login</h1>
         <form
           onSubmit={handleLogin}
@@ -89,7 +89,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-12">
+    <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 pb-12 pt-40 sm:pt-28">
       <button
         onClick={handleLogout}
         type="button"

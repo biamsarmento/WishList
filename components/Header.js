@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,10 +11,22 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="bg-blush">
-      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 py-6 sm:flex-row sm:justify-between">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-blush/70 shadow-sm backdrop-blur-sm" : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 py-5 sm:flex-row sm:justify-between">
         <Link href="/" className="font-nerko text-4xl text-rose sm:text-5xl">
           Bia&apos;s Wish List
         </Link>
