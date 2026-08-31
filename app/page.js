@@ -39,7 +39,7 @@ export default function HomePage() {
               ninguém repetir o presente.
             </li>
             <li>Itens em dólar mostram o valor convertido em real, na cotação do dia.</li>
-            <li>Prefere não comprar o item direto? Dá pra pagar o valor equivalente por PIX.</li>
+            <li>Prefere só mandar um PIX? A chave fica sempre visível na lista de presentes.</li>
           </ul>
         </div>
       </section>

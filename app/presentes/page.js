@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { getExchangeRate } from "@/lib/exchangeRate";
 import GiftCard from "@/components/GiftCard";
+import PixBanner from "@/components/PixBanner";
 
 export default function PresentesPage() {
   const [gifts, setGifts] = useState([]);
@@ -71,8 +72,10 @@ export default function PresentesPage() {
         Oi gente! Criei esse site para dar sugestões de presentes para as pessoas que estiverem na
         dúvida sobre o que me dar... :) É só clicar na imagem para entrar no site! Se você já
         comprou algum presente, marca aqui para ninguém repetir. E nos itens em dólar dá pra ver o
-        valor em real e pagar por PIX, se preferir.
+        valor convertido em real, na cotação do dia.
       </p>
+
+      <PixBanner />
 
       {loading ? (
         <p className="font-comic text-lg">Carregando a lista de presentes...</p>
