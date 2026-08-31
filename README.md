@@ -18,6 +18,13 @@ e abrir `http://localhost:8000`.
 4. Em **Project Settings → API**, copiar a **Project URL** e a **anon public key** e colar em [`scripts/supabaseClient.js`](scripts/supabaseClient.js).
 5. Preço e moeda de cada presente ficam na tabela `gifts` (colunas `price`/`currency`) — dá pra editar direto pelo **Table Editor** do Supabase, sem precisar mexer em código.
 
+## Editar a lista pelo site (admin.html)
+A página [`admin.html`](admin.html) permite adicionar, editar e excluir presentes sem entrar no Supabase.
+
+1. No painel do Supabase, em **Authentication → Users**, criar um usuário (e-mail + senha) — só quem tiver essa conta consegue logar, não existe cadastro público no site.
+2. Rodar a segunda metade de [`supabase/schema.sql`](supabase/schema.sql) (a partir do comentário "NOVO (fase 2)") — cria a permissão de escrita para usuários logados e o bucket de imagens `gift-images` no Storage.
+3. Abrir `/admin.html`, logar com esse e-mail/senha.
+
 ## Deploy (Vercel + domínio próprio)
 1. Importar este repositório no [Vercel](https://vercel.com) (login com GitHub) — não precisa configurar build, é site estático.
 2. Cada push na `main` gera um deploy automático.

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Beatriz Mingorance Sarmento">
+        <title>Bia's WishList — Admin</title>
+        <link rel="shortcut icon" href="./images/favicon.ico" />
+        <link rel="stylesheet" href="./styles/index.css" />
+    </head>
+    <body>
+        <div class="page">
+            <header class="header">
+                <h1 class="title">Admin</h1>
+            </header>
+            <section class="elements">
+                <div id="login-section" class="admin-box">
+                    <h2 class="gift-title">Login</h2>
+                    <form id="login-form" class="admin-form">
+                        <input type="email" id="login-email" placeholder="E-mail" required>
+                        <input type="password" id="login-password" placeholder="Senha" required>
+                        <button type="submit" class="gift-buy-btn">Entrar</button>
+                        <p id="login-error" class="admin-error" hidden></p>
+                    </form>
+                </div>
+
+                <div id="admin-panel" class="admin-panel" hidden>
+                    <button id="logout-btn" type="button" class="gift-pix-toggle">Sair</button>
+
+                    <h2 class="gift-title">Adicionar presente</h2>
+                    <form id="add-gift-form" class="admin-form admin-box">
+                        <input type="text" name="title" placeholder="Título" required>
+                        <input type="text" name="details" placeholder="Detalhes (opcional)">
+                        <input type="url" name="link" placeholder="Link da loja" required>
+                        <input type="number" step="0.01" min="0" name="price" placeholder="Preço (opcional)">
+                        <select name="currency">
+                            <option value="BRL">BRL</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <input type="number" name="sort_order" placeholder="Ordem" value="0">
+                        <input type="file" name="image" accept="image/*" required>
+                        <button type="submit" class="gift-buy-btn">Adicionar</button>
+                        <p id="add-gift-status" class="admin-status" hidden></p>
+                    </form>
+
+                    <h2 class="gift-title">Presentes atuais</h2>
+                    <div id="gifts-admin-list" class="elements"></div>
+                </div>
+            </section>
+        </div>
+        <script type="module" src="./scripts/admin.js"></script>
+    </body>
+</html>

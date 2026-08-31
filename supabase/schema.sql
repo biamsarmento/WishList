@@ -71,3 +71,32 @@ values
         'https://www.eliaspa.com.br/unidade/sudoeste',
         './images/elia-spa-palmas.jpg', null, 'BRL', 8)
 on conflict (id) do nothing;
+
+-- ============================================================
+-- NOVO (fase 2): permite que a Bia edite a lista pelo admin.html.
+-- Se você já rodou tudo acima, só precisa rodar a partir daqui.
+-- ============================================================
+
+-- Usuários autenticados (só a Bia terá conta) podem criar, editar e
+-- apagar presentes direto pela tabela. Visitantes anônimos continuam
+-- sem acesso de escrita na tabela (só via toggle_gift_purchased acima).
+create policy "Authenticated users can manage gifts"
+    on gifts for all
+    to authenticated
+    using (true)
+    with check (true);
+
+-- Bucket de imagens para presentes cadastrados pelo admin.
+insert into storage.buckets (id, name, public)
+values ('gift-images', 'gift-images', true)
+on conflict (id) do nothing;
+
+create policy "Public read gift images"
+    on storage.objects for select
+    using (bucket_id = 'gift-images');
+
+create policy "Authenticated manage gift images"
+    on storage.objects for all
+    to authenticated
+    using (bucket_id = 'gift-images')
+    with check (bucket_id = 'gift-images');

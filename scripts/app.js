@@ -59,7 +59,7 @@ function renderPixBox(gift, rate) {
 }
 
 function buyButtonLabel(isPurchased) {
-    return isPurchased ? "🎉 Já foi presenteado (clique para desmarcar)" : "Já comprei! 🎁";
+    return isPurchased ? "🎉 Já foi presenteado (clique para desmarcar)" : "Já comprei!";
 }
 
 function renderGift(gift, rate) {
