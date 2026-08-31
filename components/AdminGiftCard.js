@@ -124,7 +124,7 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
         <button
           type="submit"
-          className="rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
+          className="cursor-pointer rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
         >
           Salvar
         </button>
@@ -136,14 +136,14 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
               type="button"
               disabled={deleting}
               onClick={handleDelete}
-              className="rounded-full bg-red-400 px-3 py-1 text-white hover:bg-red-500 disabled:opacity-50"
+              className="cursor-pointer rounded-full bg-red-400 px-3 py-1 text-white hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Sim
             </button>
             <button
               type="button"
               onClick={() => setConfirmingDelete(false)}
-              className="rounded-full border-2 border-blush px-3 py-1 text-rose"
+              className="cursor-pointer rounded-full border-2 border-blush px-3 py-1 text-rose"
             >
               Cancelar
             </button>
@@ -152,7 +152,7 @@ export default function AdminGiftCard({ gift, onSaved, onDeleted }) {
           <button
             type="button"
             onClick={() => setConfirmingDelete(true)}
-            className="rounded-full border-2 border-red-300 px-4 py-2 font-comic text-red-500 hover:bg-red-50"
+            className="cursor-pointer rounded-full border-2 border-red-300 px-4 py-2 font-comic text-red-500 hover:bg-red-50"
           >
             Excluir
           </button>

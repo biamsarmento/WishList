@@ -136,7 +136,7 @@ export default function AdminGiftForm({ onAdded }) {
 
       <button
         type="submit"
-        className="rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
+        className="cursor-pointer rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
       >
         Adicionar
       </button>

@@ -78,7 +78,7 @@ export default function AdminPage() {
           />
           <button
             type="submit"
-            className="rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
+            className="cursor-pointer rounded-full bg-rose px-4 py-2 font-comic text-white hover:bg-rose-light"
           >
             Entrar
           </button>
@@ -93,7 +93,7 @@ export default function AdminPage() {
       <button
         onClick={handleLogout}
         type="button"
-        className="self-end font-comic text-sm text-rose underline"
+        className="cursor-pointer self-end font-comic text-sm text-rose underline"
       >
         Sair
       </button>

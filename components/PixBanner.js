@@ -27,7 +27,7 @@ export default function PixBanner() {
         <button
           type="button"
           onClick={handleCopy}
-          className="rounded-full bg-rose px-5 py-2 font-comic text-white transition hover:bg-rose-light"
+          className="cursor-pointer rounded-full bg-rose px-5 py-2 font-comic text-white transition hover:bg-rose-light"
         >
           {copied ? "Copiado!" : "Copiar chave"}
         </button>

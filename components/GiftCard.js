@@ -34,7 +34,7 @@ export default function GiftCard({ gift, rate, onToggle }) {
       <button
         type="button"
         onClick={() => onToggle(gift.id, gift.is_purchased)}
-        className={`rounded-full px-5 py-2 font-comic text-white transition ${
+        className={`cursor-pointer rounded-full px-5 py-2 font-comic text-white transition ${
           gift.is_purchased ? "bg-gray-400 hover:bg-gray-500" : "bg-rose hover:bg-rose-light"
         }`}
       >
