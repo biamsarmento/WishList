@@ -17,7 +17,7 @@ export default function PixBanner() {
   };
 
   return (
-    <div className="w-full max-w-2xl rounded-3xl border-2 border-rose bg-white/80 p-6 text-center shadow-sm">
+    <div className="max-w-2xl rounded-3xl border-2 border-rose bg-white/80 p-6 text-center shadow-sm">
       <h2 className="font-nerko text-2xl text-rose">Chave PIX?</h2>
 
       <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
